@@ -1,7 +1,6 @@
 package com.shaparapatah.chuckjoke
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,20 +23,24 @@ class ChuckFragment : Fragment() {
         ViewModelProvider(this)[ChuckViewModel::class.java]
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.getLiveData().observe(viewLifecycleOwner, Observer {
-
-        })
         _binding = FragmentChuckBinding.inflate(inflater)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
+        viewModel.sendServerRequest()
+    }
+
     private fun renderData(data: AppState) {
-        when(data) {
+        when (data) {
             is AppState.Error -> {
                 toast(data.error.message)
             }
@@ -45,16 +48,19 @@ class ChuckFragment : Fragment() {
                 loadingLayout.visibility = View.VISIBLE
                 mainFragmentRecyclerView.visibility = View.INVISIBLE
 
-                }
+            }
             is AppState.Success -> {
+                val serverResponseData = data.serverResponseData
+                val joke = serverResponseData.joke
                 binding.mainFragmentRecyclerView
+
+
             }
         }
     }
 
     private fun Fragment.toast(string: String?) {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
-            setGravity(Gravity.BOTTOM, 0, 250)
             show()
         }
     }

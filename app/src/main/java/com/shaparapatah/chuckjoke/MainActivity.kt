@@ -1,18 +1,19 @@
 package com.shaparapatah.chuckjoke
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.shaparapatah.chuckjoke.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        if (savedInstanceState == null)
+        setContentView(R.layout.activity_main)
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ChuckFragment.newInstance()).commit()
+                .replace(R.id.container, ChuckFragment.newInstance())
+                .commitNow()
+        }
     }
 }
