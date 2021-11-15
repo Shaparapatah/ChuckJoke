@@ -24,7 +24,7 @@ class ChuckViewModel(
         if (joke.isBlank()) {
             AppState.Error(Throwable("Empty string"))
         } else {
-            retrofitImpl.getRetrofitImpl().getChuckJoke().enqueue( //FIXME ошибка
+            retrofitImpl.getRetrofitImpl().getChuckJoke().enqueue( //FIXME ошибка1
                 object : Callback<List<Value>> {
                     override fun onResponse(
                         call: Call<List<Value>>,
