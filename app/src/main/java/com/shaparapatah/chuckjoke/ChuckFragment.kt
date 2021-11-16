@@ -24,6 +24,10 @@ class ChuckFragment : Fragment() {
         ViewModelProvider(this)[ChuckViewModel::class.java]
     }
 
+    private val adapter : ChuckAdapter by lazy {
+        ChuckAdapter()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +41,11 @@ class ChuckFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
-        viewModel.sendServerRequest()
+        binding.btnReload.setOnClickListener {
+            // добавить свою проверку на пустое поле
+            if (binding.etNumber.text.isNotBlank())
+                viewModel.sendServerRequest(Integer.parseInt(binding.etNumber.text.toString()))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -71,7 +79,10 @@ class ChuckFragment : Fragment() {
 
             }
             is AppState.Success -> {
-                binding.recyclerView
+                binding.recyclerView.adapter = adapter
+                val jokes = data.serverResponseData
+                adapter.setJokes(jokes)
+                binding.root
 
 
             }

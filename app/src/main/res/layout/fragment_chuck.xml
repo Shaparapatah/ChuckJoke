@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -30,6 +31,24 @@
             android:layout_gravity="center" />
     </FrameLayout>
 
+    <EditText
+        android:id="@+id/etNumber"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/loadingLayout"
+        app:layout_constraintStart_toStartOf="@+id/loadingLayout"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <Button
+        android:id="@+id/btnReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reload"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+        app:layout_constraintEnd_toEndOf="@+id/loadingLayout"
+        app:layout_constraintStart_toStartOf="@+id/loadingLayout"
+        app:layout_constraintTop_toBottomOf="@+id/etNumber" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,7 +61,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bottom_bar" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

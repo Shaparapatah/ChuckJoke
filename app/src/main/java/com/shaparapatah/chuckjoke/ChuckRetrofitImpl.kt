@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ChuckRetrofitImpl {
 
-    private val baseUrl = "https://api.icndb.com/"
+    private val baseUrl = "https://api.icndb.com"
 
     fun getRetrofitImpl(): ChuckAPI {
         return Retrofit.Builder().baseUrl(baseUrl)

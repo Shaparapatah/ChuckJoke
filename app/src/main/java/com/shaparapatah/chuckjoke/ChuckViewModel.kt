@@ -17,16 +17,16 @@ class ChuckViewModel(
         return liveDataToObserve
     }
 
-    fun sendServerRequest() {
+    fun sendServerRequest(numberOfJokes: Int) {
         liveDataToObserve.postValue(AppState.Loading)
-        retrofitImpl.getRetrofitImpl().getChuckJoke().enqueue(
-            object : Callback<Value> {
+        retrofitImpl.getRetrofitImpl().getChuckJokes(numberOfJokes).enqueue(
+            object : Callback<ServerResponse> {
                 override fun onResponse(
-                    call: Call<Value>,
-                    response: Response<Value>
+                    call: Call<ServerResponse>,
+                    response: Response<ServerResponse>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
-                        liveDataToObserve.postValue(AppState.Success(response.body() as Value))
+                        liveDataToObserve.postValue(AppState.Success(listOf(response.body() as ServerResponse)))
                     } else {
                         val message = response.message()
                         if (message.isNullOrEmpty()) {
@@ -38,7 +38,7 @@ class ChuckViewModel(
                         }
                     }
                 }
-                override fun onFailure(call: Call<Value>, t: Throwable) {
+                override fun onFailure(call: Call<ServerResponse>, t: Throwable) {
                     liveDataToObserve.value = AppState.Error(t)
                 }
             }
