@@ -2,7 +2,6 @@ package com.shaparapatah.chuckjoke
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.fragment_chuck.*
 
 
 class MainActivity : AppCompatActivity() {

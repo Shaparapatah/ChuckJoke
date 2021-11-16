@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.shaparapatah.chuckjoke.databinding.FragmentChuckBinding
 import com.shaparapatah.chuckjoke.view.MainActivityWebView
-import kotlinx.android.synthetic.main.fragment_chuck.*
+
 
 
 class ChuckFragment : Fragment() {
@@ -22,27 +22,6 @@ class ChuckFragment : Fragment() {
 
     private val viewModel: ChuckViewModel by lazy {
         ViewModelProvider(this)[ChuckViewModel::class.java]
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_navigation_view, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.app_bar_jokes -> activity?.let {
-                startActivity(
-                    Intent(it, MainActivity::class.java)
-                )
-            }
-            R.id.app_bar_web_view -> activity?.let {
-                startActivity(
-                    Intent(it, MainActivityWebView::class.java)
-                )
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
 
@@ -61,14 +40,34 @@ class ChuckFragment : Fragment() {
         viewModel.sendServerRequest()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_bottom_bar, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.app_bar_jokes -> activity?.supportFragmentManager?.beginTransaction()
+                ?.add(R.id.container, ChuckFragment())?.addToBackStack(null)?.commit()
+
+
+            R.id.app_bar_web_view -> activity?.let {
+                startActivity(
+                    Intent(it, MainActivityWebView::class.java)
+                )
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun renderData(data: AppState) {
         when (data) {
             is AppState.Error -> {
                 toast(data.error.message)
             }
             is AppState.Loading -> {
-              //  loadingLayout.visibility = View.VISIBLE
-              //  recyclerView.visibility = View.INVISIBLE
+                //  loadingLayout.visibility = View.VISIBLE
+                //  recyclerView.visibility = View.INVISIBLE
 
             }
             is AppState.Success -> {
@@ -88,8 +87,6 @@ class ChuckFragment : Fragment() {
     companion object {
         fun newInstance() = ChuckFragment()
     }
-
-
 
 
     override fun onDestroy() {

@@ -30,6 +30,8 @@
             android:layout_gravity="center" />
     </FrameLayout>
 
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
@@ -39,6 +41,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_navigation_view" />
+        app:menu="@menu/menu_bottom_bar" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
