@@ -17,7 +17,6 @@ class ChuckViewModel(
         return liveDataToObserve
     }
 
-
     fun sendServerRequest() {
         liveDataToObserve.postValue(AppState.Loading)
         retrofitImpl.getRetrofitImpl().getChuckJoke().enqueue(

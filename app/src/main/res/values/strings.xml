@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ChuckJoke</string>
+    <string name="title_jokes">Jokes</string>
+    <string name="webView">WebView</string>
 </resources>
