@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ChuckAdapter : RecyclerView.Adapter<ChuckAdapter.ChuckViewHolder>() {
 
-    private var chuckData: List<ServerResponse> = listOf()
+    private var chuckData: List<OneJoke> = listOf()
     fun setJokes(data: List<ServerResponse>) {
-        chuckData = data
+        chuckData = data[0].value
         notifyDataSetChanged()
     }
 
@@ -32,11 +32,10 @@ class ChuckAdapter : RecyclerView.Adapter<ChuckAdapter.ChuckViewHolder>() {
     override fun getItemCount() = chuckData.size
 
 
-
     inner class ChuckViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun render(serverResponse : ServerResponse) {
-            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView)
-            serverResponse.value.toString()
+        fun render(oneJoke: OneJoke) {
+            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text =
+                oneJoke.joke
         }
     }
 }

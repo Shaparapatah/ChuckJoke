@@ -11,7 +11,6 @@ import com.shaparapatah.chuckjoke.databinding.FragmentChuckBinding
 import com.shaparapatah.chuckjoke.view.MainActivityWebView
 
 
-
 class ChuckFragment : Fragment() {
 
     private var _binding: FragmentChuckBinding? = null
@@ -24,7 +23,7 @@ class ChuckFragment : Fragment() {
         ViewModelProvider(this)[ChuckViewModel::class.java]
     }
 
-    private val adapter : ChuckAdapter by lazy {
+    private val adapter: ChuckAdapter by lazy {
         ChuckAdapter()
     }
 
@@ -42,7 +41,6 @@ class ChuckFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
         binding.btnReload.setOnClickListener {
-            // добавить свою проверку на пустое поле
             if (binding.etNumber.text.isNotBlank())
                 viewModel.sendServerRequest(Integer.parseInt(binding.etNumber.text.toString()))
         }
@@ -74,8 +72,8 @@ class ChuckFragment : Fragment() {
                 toast(data.error.message)
             }
             is AppState.Loading -> {
-                //  loadingLayout.visibility = View.VISIBLE
-                //  recyclerView.visibility = View.INVISIBLE
+                //   loadingLayout.visibility = View.VISIBLE
+                // recyclerView.visibility = View.INVISIBLE
 
             }
             is AppState.Success -> {
@@ -83,8 +81,6 @@ class ChuckFragment : Fragment() {
                 val jokes = data.serverResponseData
                 adapter.setJokes(jokes)
                 binding.root
-
-
             }
         }
     }

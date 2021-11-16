@@ -16,7 +16,7 @@
             android:id="@+id/editText"
             android:layout_width="0dp"
             android:layout_weight="4"
-            android:text="https://www.icndb.com/"
+            android:text="https://www.icndb.com/api/"
             android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatButton
