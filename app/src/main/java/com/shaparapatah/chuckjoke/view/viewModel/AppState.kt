@@ -1,5 +1,6 @@
-package com.shaparapatah.chuckjoke
+package com.shaparapatah.chuckjoke.view.viewModel
 
+import com.shaparapatah.chuckjoke.ServerResponse
 
 
 sealed class AppState {

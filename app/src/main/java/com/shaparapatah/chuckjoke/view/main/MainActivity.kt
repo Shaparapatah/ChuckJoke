@@ -1,7 +1,9 @@
-package com.shaparapatah.chuckjoke
+package com.shaparapatah.chuckjoke.view.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.shaparapatah.chuckjoke.ChuckFragment
+import com.shaparapatah.chuckjoke.R
 
 
 class MainActivity : AppCompatActivity() {

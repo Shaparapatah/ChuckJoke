@@ -1,5 +1,6 @@
-package com.shaparapatah.chuckjoke
+package com.shaparapatah.chuckjoke.repository
 
+import com.shaparapatah.chuckjoke.ServerResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

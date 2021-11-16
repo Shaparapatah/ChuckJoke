@@ -1,8 +1,10 @@
-package com.shaparapatah.chuckjoke
+package com.shaparapatah.chuckjoke.view.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.shaparapatah.chuckjoke.ServerResponse
+import com.shaparapatah.chuckjoke.repository.ChuckRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

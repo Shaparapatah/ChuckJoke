@@ -9,6 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.shaparapatah.chuckjoke.databinding.FragmentChuckBinding
 import com.shaparapatah.chuckjoke.view.MainActivityWebView
+import com.shaparapatah.chuckjoke.view.viewModel.AppState
+import com.shaparapatah.chuckjoke.view.viewModel.ChuckViewModel
+import kotlinx.android.synthetic.main.fragment_chuck.*
 
 
 class ChuckFragment : Fragment() {
@@ -56,7 +59,6 @@ class ChuckFragment : Fragment() {
             R.id.app_bar_jokes -> activity?.supportFragmentManager?.beginTransaction()
                 ?.add(R.id.container, ChuckFragment())?.addToBackStack(null)?.commit()
 
-
             R.id.app_bar_web_view -> activity?.let {
                 startActivity(
                     Intent(it, MainActivityWebView::class.java)
@@ -70,11 +72,6 @@ class ChuckFragment : Fragment() {
         when (data) {
             is AppState.Error -> {
                 toast(data.error.message)
-            }
-            is AppState.Loading -> {
-                //   loadingLayout.visibility = View.VISIBLE
-                // recyclerView.visibility = View.INVISIBLE
-
             }
             is AppState.Success -> {
                 binding.recyclerView.adapter = adapter

@@ -1,4 +1,4 @@
-package com.shaparapatah.chuckjoke
+package com.shaparapatah.chuckjoke.repository
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
